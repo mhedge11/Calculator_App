@@ -9,11 +9,11 @@ import CalcProvider from './context/CalcContext';
 // https://github.com/candraKriswinarto/react-calculator-app/blob/main/src/index.css
 
 const btnValues = [
-  ['AC', '+-', '%', '/'],
-  [7, 8, 9, 'x'],
-  [4, 5, 6, '-'],
-  [1, 2, 3, '+'],
-  [0, '.', '='],
+  ['Rad', 'Deg', 'x!', '(', ')', '%', 'AC'],
+  ['Inv', 'sin', 'ln', 7, 8, 9, '\u00F7'],
+  ['\u03C0', 'cos', 'log', 4, 5, 6, 'x'],
+  ['e', 'tan', '\u221A', 1, 2, 3, '-'],
+  ['Ans', 'EXP', 'x\u02b8', 0, '.', '=', '+'],
 ];
 
 function App() {

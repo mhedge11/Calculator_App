@@ -13,16 +13,21 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
+  text-align: right;
+  background-color: rgb(212, 215, 218);
 }
 
 .screen {
-  height: 4rem;
-  margin-bottom: 4rem;
+  padding: 0.3rem;
+  height: 6rem;
+  margin-bottom: 1rem;
+  border: solid 1px black;
+  border-width: 1px;
 }
 
 .layout {
   background: #f6f8f9;
-  width: 20rem;
+  width: 52rem;
   padding: 2rem;
   margin-top: 4rem;
   border-radius: 1rem;
@@ -31,12 +36,12 @@ body {
 
 .buttonBox {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: .5rem;
+  grid-template-columns: repeat(7, 1fr);
+  gap: .8rem;
 }
 
 .button {
-  background: #e9f0f4;
+  background: #edebeb;
   height: 3.5rem;
   padding: 10px;
   border-radius: 10px;
@@ -47,17 +52,20 @@ body {
   color: #242424;
   border: none;
   font-size: 1.5rem;
+  width: 6.0rem;
 }
 
 .button:hover {
   border: 2px dotted #242424;
+  font-size:1.9rem;
+  
 }
 
 .equals {
-  background: #4bd086;
-  grid-column: 3/5;
+  background: darkblue;
+  color: white;
 }
 
 .opt {
-  background: #f79505;
+  background: lightgray;
 }

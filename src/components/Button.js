@@ -8,6 +8,26 @@ const getStyleName = (btn) => {
     '+': 'opt',
     '/': 'opt',
     x: 'opt',
+    AC: 'opt',
+    '\u00F7': 'opt',
+    '%': 'opt',
+    ')': 'opt',
+    '(': 'opt',
+    'x!': 'opt',
+    Deg: 'opt',
+    Rad: 'opt',
+    Inv: 'opt',
+    sin: 'opt',
+    ln: 'opt',
+    '\u03C0': 'opt',
+    '\u221A': 'opt',
+    'x\u02b8': 'opt',
+    cos: 'opt',
+    log: 'opt',
+    e: 'opt',
+    tan: 'opt',
+    Ans: 'opt',
+    EXP: 'opt',
   };
   return className[btn];
 };
@@ -99,7 +119,7 @@ const Button = ({ value }) => {
       '+': signClick,
       '=': equalsClick,
       '%': persentClick,
-      '+-': invertClick,
+      Inv: invertClick,
     };
     if (results[value]) {
       return results[value]();
