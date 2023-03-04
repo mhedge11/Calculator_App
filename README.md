@@ -14,7 +14,7 @@ https://nodejs.org/en/download/
 For npm:
 #### `npm install -g npm`
 
-Another Article
+Another Article:
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 
@@ -34,7 +34,7 @@ You may also see any lint errors in the console.
 <!-- Install Fontawesome:
 ### `npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome` -->
 
-### The 2 above are likely all you need to run the application
+### After installing npm and node, you should be able to begin by running npm start in the correct folder
 
 
 ______________________________
