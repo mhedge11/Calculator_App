@@ -2,6 +2,21 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+You will have to install npm and node in order to run this project if you haven't already.
+The link below contains basic information.
+
+I haven't had to do this for a long time, so I can't say for sure, but I think these links will help:
+
+For node:
+https://nodejs.org/en/download/
+
+For npm:
+### `npm install -g npm`
+
+https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -13,6 +28,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+
+<!-- Install Fontawesome:
+### `npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome` -->
+
+### The 2 above are likely all you need to run the application
+
+
+______________________________
+
 
 ### `npm test`
 
