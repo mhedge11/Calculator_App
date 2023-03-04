@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { CalcContext } from '../context/CalcContext';
 
+// Refers to the button pressed within the button grid
 const getStyleName = (btn) => {
   const className = {
     '=': 'equals',
     '-': 'opt',
     '+': 'opt',
-    '/': 'opt',
+    '\u00F7': 'opt',
     x: 'opt',
     AC: 'opt',
-    '\u00F7': 'opt',
     '%': 'opt',
     ')': 'opt',
     '(': 'opt',
@@ -34,20 +34,23 @@ const getStyleName = (btn) => {
 
 const Button = ({ value }) => {
   const { calc, setCalc } = useContext(CalcContext);
-  // User click comma
-  const commaClick = () => {
+
+  // This will put the value into decimal form when a user clicks the period
+  // Subsequent calcuations will remain in decimal form
+  const periodClick = () => {
     setCalc({
       ...calc,
       num: !calc.num.toString().includes('.') ? calc.num + value : calc.num,
     });
   };
 
-  // User click C
+  // When a user clicks "AC", this will reset num and res to zero
   const resetClick = () => {
     setCalc({ sign: '', num: 0, res: 0 });
   };
 
-  // User click number
+  // This is for when a user clicks a button 0-9 or the period (.)
+  // It will store the value in num variable
   const handleClickButton = () => {
     const numberString = value.toString();
     let numberValue;
@@ -63,6 +66,7 @@ const Button = ({ value }) => {
     });
   };
 
+  // This updates the value in res based on whether or not res previously held a value
   const signClick = () => {
     setCalc({
       sign: value,
@@ -71,15 +75,17 @@ const Button = ({ value }) => {
     });
   };
 
-  // User click equals
+  // This calcuates values between 2 numbers when the equal button is pressed
   const equalsClick = () => {
     if (calc.res && calc.num) {
+      console.log('In function');
       const math = (a, b, sign) => {
         const result = {
           '+': (a, b) => a + b,
           '-': (a, b) => a - b,
           x: (a, b) => a * b,
-          '/': (a, b) => a / b,
+          '\u00F7': (a, b) => a / b,
+          'x\u02b8': (a, b) => Math.pow(a, b),
         };
         return result[sign](a, b);
       };
@@ -91,8 +97,8 @@ const Button = ({ value }) => {
     }
   };
 
-  // User click percent
-  const persentClick = () => {
+  // This calculates the percentage in decimal form
+  const percentClick = () => {
     setCalc({
       num: calc.num / 100,
       res: calc.res / 100,
@@ -100,7 +106,39 @@ const Button = ({ value }) => {
     });
   };
 
-  // User click invert button
+  // Inputs value of pi onto screen to use in calculations
+  const piClick = () => {
+    const numberString = Math.PI.toString();
+    let numberValue;
+    if (numberString === '0' && calc.num === 0) {
+      numberValue = '0';
+    } else {
+      numberValue = Number(calc.num + numberString);
+    }
+
+    setCalc({
+      ...calc,
+      num: numberValue,
+    });
+  };
+
+  // Inputs value of e onto screen to use in calculations
+  const eClick = () => {
+    const numberString = Math.E.toString();
+    let numberValue;
+    if (numberString === '0' && calc.num === 0) {
+      numberValue = '0';
+    } else {
+      numberValue = Number(calc.num + numberString);
+    }
+
+    setCalc({
+      ...calc,
+      num: numberValue,
+    });
+  };
+
+  // This changed from positive value to negative value and vice versa
   const invertClick = () => {
     setCalc({
       num: calc.num ? calc.num * -1 : 0,
@@ -109,17 +147,107 @@ const Button = ({ value }) => {
     });
   };
 
+  // Cos Button Function
+  const cosClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.cos(calc.res) : Math.cos(calc.num),
+    });
+  };
+
+  // Sin Button Function
+  const sinClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.sin(calc.res) : Math.sin(calc.num),
+    });
+  };
+
+  // Tangent Button Function
+  const tanClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.tan(calc.res) : Math.tan(calc.num),
+    });
+  };
+
+  // LN Button Function
+  const lnClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.log10(calc.res) : Math.log10(calc.num),
+    });
+  };
+
+  // Log Button Function
+  const logClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.log(calc.res) : Math.log(calc.num),
+    });
+  };
+
+  // Square Root Button Function
+  const sqrtClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.sqrt(calc.res) : Math.sqrt(calc.num),
+    });
+  };
+
+  // Factoral Button Function
+  const xFactorialClick = () => {
+    let answer = 0;
+    if (!calc.res && !calc.num) return;
+    if (calc.res) {
+      if (calc.res < 0) return;
+      answer = recursive(calc.res);
+      setCalc({
+        ...calc,
+        res: answer,
+        num: answer,
+      });
+      return;
+    }
+    if (calc.num < 0) return;
+    answer = recursive(calc.num);
+    setCalc({
+      ...calc,
+      res: answer,
+      num: answer,
+    });
+  };
+
+  function recursive(n) {
+    if (n === 0 || n === 1) {
+      return 1;
+    } else {
+      return n * recursive(n - 1);
+    }
+  }
+
+  // This links the button pressed to the correct function
   const handleBtnClick = () => {
     const results = {
-      '.': commaClick,
+      '.': periodClick,
       AC: resetClick,
-      '/': signClick,
+      '\u00F7': signClick,
       x: signClick,
       '-': signClick,
       '+': signClick,
       '=': equalsClick,
-      '%': persentClick,
+      '%': percentClick,
       Inv: invertClick,
+      cos: cosClick,
+      sin: sinClick,
+      tan: tanClick,
+      '\u03C0': piClick,
+      e: eClick,
+      ln: lnClick,
+      '\u221A': sqrtClick,
+      log: logClick,
+      'x!': xFactorialClick,
+      'x\u02b8': signClick,
     };
     if (results[value]) {
       return results[value]();
