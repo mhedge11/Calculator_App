@@ -78,7 +78,6 @@ const Button = ({ value }) => {
   // This calcuates values between 2 numbers when the equal button is pressed
   const equalsClick = () => {
     if (calc.res && calc.num) {
-      console.log('In function');
       const math = (a, b, sign) => {
         const result = {
           '+': (a, b) => a + b,
@@ -139,6 +138,7 @@ const Button = ({ value }) => {
   };
 
   // This changed from positive value to negative value and vice versa
+  // This was actually meant to bring out the inverse of the buttons on a real calculator
   const invertClick = () => {
     setCalc({
       num: calc.num ? calc.num * -1 : 0,
@@ -226,6 +226,22 @@ const Button = ({ value }) => {
     }
   }
 
+  // The Ans will use the res and num values and perform a math calculation based on the operands used
+  // Not for sure on how this should be implented
+  const answerClick = () => {
+    if (calc.res && calc.num) {
+      equalsClick();
+    }
+  };
+
+  // Exponential button function
+  const expClick = () => {
+    setCalc({
+      ...calc,
+      num: calc.res ? Math.exp(calc.res) : Math.exp(calc.num),
+    });
+  };
+
   // This links the button pressed to the correct function
   const handleBtnClick = () => {
     const results = {
@@ -248,6 +264,8 @@ const Button = ({ value }) => {
       log: logClick,
       'x!': xFactorialClick,
       'x\u02b8': signClick,
+      Ans: answerClick,
+      EXP: expClick,
     };
     if (results[value]) {
       return results[value]();
